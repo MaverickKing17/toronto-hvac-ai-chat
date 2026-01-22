@@ -1,16 +1,22 @@
 
 import React, { useState } from 'react';
-import { Calculator, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Calculator, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
 
 const RebateCalculator: React.FC = () => {
   const [postalCode, setPostalCode] = useState('');
   const [systemType, setSystemType] = useState('heat-pump');
   const [calculated, setCalculated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
     if (postalCode.length > 3) {
-      setCalculated(true);
+      setIsLoading(true);
+      // Simulate API calculation delay for better UX
+      setTimeout(() => {
+        setIsLoading(false);
+        setCalculated(true);
+      }, 1500);
     }
   };
 
@@ -32,12 +38,13 @@ const RebateCalculator: React.FC = () => {
         </div>
 
         {!calculated ? (
-          <form onSubmit={handleCalculate} className="space-y-6">
+          <form onSubmit={handleCalculate} className={`space-y-6 transition-opacity duration-300 ${isLoading ? 'opacity-90' : 'opacity-100'}`}>
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-300">Select System Upgrade</label>
               <div className="grid grid-cols-2 gap-3">
                 <button 
                   type="button"
+                  disabled={isLoading}
                   onClick={() => setSystemType('heat-pump')}
                   className={`p-3 rounded-xl border text-sm transition-all ${systemType === 'heat-pump' ? 'bg-secondary border-secondary text-white' : 'border-slate-600 hover:bg-white/5'}`}
                 >
@@ -45,6 +52,7 @@ const RebateCalculator: React.FC = () => {
                 </button>
                 <button 
                   type="button"
+                  disabled={isLoading}
                   onClick={() => setSystemType('furnace')}
                   className={`p-3 rounded-xl border text-sm transition-all ${systemType === 'furnace' ? 'bg-secondary border-secondary text-white' : 'border-slate-600 hover:bg-white/5'}`}
                 >
@@ -60,13 +68,27 @@ const RebateCalculator: React.FC = () => {
                 value={postalCode}
                 onChange={(e) => setPostalCode(e.target.value.toUpperCase())}
                 placeholder="L5B 0L5"
-                className="w-full bg-slate-800/50 border border-slate-600 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-secondary transition-colors"
+                disabled={isLoading}
+                className="w-full bg-slate-800/50 border border-slate-600 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-secondary transition-colors disabled:opacity-50"
                 required
               />
             </div>
 
-            <button type="submit" className="w-full bg-white text-primary font-bold py-4 rounded-xl hover:bg-slate-200 transition-all flex items-center justify-center gap-2">
-              Calculate Savings <ArrowRight size={18} />
+            <button 
+              type="submit" 
+              disabled={isLoading}
+              className="w-full bg-white text-primary font-bold py-4 rounded-xl hover:bg-slate-200 disabled:bg-slate-300 disabled:cursor-wait transition-all flex items-center justify-center gap-2"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="animate-spin" size={20} />
+                  Calculating...
+                </>
+              ) : (
+                <>
+                  Calculate Savings <ArrowRight size={18} />
+                </>
+              )}
             </button>
           </form>
         ) : (
