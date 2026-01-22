@@ -10,6 +10,7 @@ import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import AIChat from './components/AIChat';
 import FAQ from './components/FAQ';
+import ScrollToTop from './components/ScrollToTop';
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const App: React.FC = () => {
       </main>
       <Footer />
       <AIChat />
+      <ScrollToTop />
     </div>
   );
 };
