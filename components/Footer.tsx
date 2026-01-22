@@ -4,6 +4,14 @@ import { COMPANY_NAME, ADDRESS, PHONE, EMAIL } from '../constants';
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Linkedin, ShieldCheck } from 'lucide-react';
 
 const Footer: React.FC = () => {
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-slate-950 text-slate-400 pt-20 pb-10 border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,12 +43,12 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-6">Quick Links</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#services" className="hover:text-secondary transition-colors">Services</a></li>
-              <li><a href="#rebates" className="hover:text-secondary transition-colors">Rebate Calculator</a></li>
-              <li><a href="#about-us" className="hover:text-secondary transition-colors">About Rencon</a></li>
-              <li><a href="#testimonials" className="hover:text-secondary transition-colors">Client Reviews</a></li>
-              <li><a href="#faq" className="hover:text-secondary transition-colors">FAQ</a></li>
-              <li><a href="#quote" className="text-accent hover:text-white font-semibold transition-colors">Get a Quote</a></li>
+              <li><a href="#services" onClick={(e) => handleScrollTo(e, 'services')} className="hover:text-secondary transition-colors">Services</a></li>
+              <li><a href="#rebates" onClick={(e) => handleScrollTo(e, 'rebates')} className="hover:text-secondary transition-colors">Rebate Calculator</a></li>
+              <li><a href="#about-us" onClick={(e) => handleScrollTo(e, 'about-us')} className="hover:text-secondary transition-colors">About Rencon</a></li>
+              <li><a href="#testimonials" onClick={(e) => handleScrollTo(e, 'testimonials')} className="hover:text-secondary transition-colors">Client Reviews</a></li>
+              <li><a href="#faq" onClick={(e) => handleScrollTo(e, 'faq')} className="hover:text-secondary transition-colors">FAQ</a></li>
+              <li><a href="#quote" onClick={(e) => handleScrollTo(e, 'quote')} className="text-accent hover:text-white font-semibold transition-colors">Get a Quote</a></li>
             </ul>
           </div>
 

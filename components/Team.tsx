@@ -3,6 +3,14 @@ import React from 'react';
 import { Ruler, FileCheck, ShieldCheck, ThermometerSun } from 'lucide-react';
 
 const Team: React.FC = () => {
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="about-us" className="py-24 bg-white relative overflow-hidden">
         {/* Subtle Background Pattern */}
@@ -57,10 +65,10 @@ const Team: React.FC = () => {
             </div>
 
             {/* Visual Break / Image Strip */}
-            <div className="mt-20 rounded-3xl overflow-hidden relative h-64 md:h-80 shadow-2xl">
+            <div className="mt-20 rounded-3xl overflow-hidden relative h-64 md:h-80 shadow-2xl bg-slate-800">
                 <img 
-                    src="https://images.unsplash.com/photo-1504384308090-c54be3855091?auto=format&fit=crop&q=80&w=2000" 
-                    alt="HVAC Installation Quality" 
+                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000" 
+                    alt="Modern Home HVAC" 
                     className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-slate-900/60 flex flex-col items-center justify-center text-center p-6">
@@ -69,6 +77,7 @@ const Team: React.FC = () => {
                     <p className="text-slate-200 max-w-lg mb-8">Join thousands of GTA homeowners enjoying perfect climate control.</p>
                     <a 
                         href="#quote"
+                        onClick={(e) => handleScrollTo(e, 'quote')}
                         className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-3 rounded-full font-bold transition-colors shadow-lg"
                     >
                         Schedule Your Assessment
