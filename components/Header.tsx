@@ -15,6 +15,12 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navItems = ['Services', 'Rebates', 'About Us', 'Testimonials', 'FAQ'];
+
+  const getHref = (item: string) => {
+    return `#${item.toLowerCase().replace(/\s+/g, '-')}`;
+  };
+
   return (
     <>
       <header 
@@ -36,10 +42,10 @@ const Header: React.FC = () => {
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-8">
-              {['Services', 'Rebates', 'About Us', 'Testimonials', 'FAQ'].map((item) => (
+              {navItems.map((item) => (
                 <a 
                   key={item} 
-                  href={`#${item.toLowerCase().replace(' ', '-')}`}
+                  href={getHref(item)}
                   className={`text-sm font-medium hover:text-accent transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-200'}`}
                 >
                   {item}
@@ -65,6 +71,7 @@ const Header: React.FC = () => {
             <button 
               className={`lg:hidden z-50 p-2 rounded-full ${isScrolled ? 'text-slate-900' : 'text-slate-900 lg:text-white'}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {mobileMenuOpen ? <X /> : <Menu />}
             </button>
@@ -74,10 +81,10 @@ const Header: React.FC = () => {
 
       {/* Mobile Menu */}
       <div className={`fixed inset-0 z-30 bg-white transform transition-transform duration-300 lg:hidden flex flex-col justify-center items-center gap-8 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        {['Services', 'Rebates', 'About Us', 'Testimonials', 'FAQ'].map((item) => (
+        {navItems.map((item) => (
           <a 
             key={item}
-            href={`#${item.toLowerCase().replace(' ', '-')}`}
+            href={getHref(item)}
             onClick={() => setMobileMenuOpen(false)}
             className="text-2xl font-display font-bold text-slate-900 hover:text-accent"
           >

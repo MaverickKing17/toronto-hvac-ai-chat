@@ -1,20 +1,28 @@
 
 import React from 'react';
 import { COMPANY_NAME, ADDRESS, PHONE, EMAIL } from '../constants';
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Linkedin, ShieldCheck } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-slate-950 text-slate-400 pt-20 pb-10 border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand & Certs */}
           <div className="space-y-6">
-            <h3 className="text-white text-2xl font-display font-bold">{COMPANY_NAME}</h3>
-            <p className="text-sm leading-relaxed">
-              Providing top-tier HVAC solutions to the Greater Toronto Area since 1977. Dedicated to comfort, efficiency, and safety.
+            <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-accent to-orange-600 rounded flex items-center justify-center text-white font-bold shadow-lg">R</div>
+                <h3 className="text-white text-xl font-display font-bold">{COMPANY_NAME}</h3>
+            </div>
+            <p className="text-sm leading-relaxed text-slate-500">
+              Providing top-tier HVAC solutions to the Greater Toronto Area since 1977. 
+              Certified, insured, and dedicated to your comfort.
             </p>
-            <div className="flex gap-4">
+            <div className="flex items-center gap-4 pt-2">
+                <ShieldCheck className="text-slate-600" />
+                <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest">TSSA Certified • HRAI Member</span>
+            </div>
+            <div className="flex gap-4 pt-2">
               {[Facebook, Instagram, Linkedin].map((Icon, i) => (
                 <a key={i} href="#" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-secondary hover:text-white transition-all">
                   <Icon size={18} />
@@ -25,25 +33,41 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-bold mb-6">Services</h4>
+            <h4 className="text-white font-bold mb-6">Quick Links</h4>
             <ul className="space-y-3 text-sm">
-              {['AC Installation', 'Heating Repair', 'Maintenance Plans', 'Rebates', 'Commercial HVAC'].map(link => (
-                <li key={link}><a href="#" className="hover:text-secondary transition-colors">{link}</a></li>
+              <li><a href="#services" className="hover:text-secondary transition-colors">Services</a></li>
+              <li><a href="#rebates" className="hover:text-secondary transition-colors">Rebate Calculator</a></li>
+              <li><a href="#about-us" className="hover:text-secondary transition-colors">About Rencon</a></li>
+              <li><a href="#testimonials" className="hover:text-secondary transition-colors">Client Reviews</a></li>
+              <li><a href="#faq" className="hover:text-secondary transition-colors">FAQ</a></li>
+              <li><a href="#quote" className="text-accent hover:text-white font-semibold transition-colors">Get a Quote</a></li>
+            </ul>
+          </div>
+
+          {/* Service Areas */}
+          <div>
+            <h4 className="text-white font-bold mb-6">Service Areas</h4>
+            <ul className="grid grid-cols-2 gap-x-2 gap-y-3 text-sm">
+              {['Toronto', 'Mississauga', 'Brampton', 'Oakville', 'Burlington', 'Milton', 'Etobicoke', 'North York', 'Scarborough', 'Vaughan'].map(city => (
+                <li key={city} className="flex items-center gap-2">
+                  <div className="w-1 h-1 bg-secondary rounded-full"></div>
+                  <span className="hover:text-slate-200 transition-colors cursor-default">{city}</span>
+                </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact Info */}
           <div>
             <h4 className="text-white font-bold mb-6">Contact Us</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="text-secondary shrink-0" size={18} />
-                <span>{ADDRESS}</span>
+                <MapPin className="text-secondary shrink-0 mt-0.5" size={18} />
+                <span className="leading-tight">{ADDRESS}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="text-secondary shrink-0" size={18} />
-                <a href={`tel:${PHONE}`} className="hover:text-white">{PHONE}</a>
+                <a href={`tel:${PHONE}`} className="hover:text-white font-medium">{PHONE}</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="text-secondary shrink-0" size={18} />
@@ -55,29 +79,14 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
-
-          {/* Map */}
-          <div className="h-48 rounded-xl overflow-hidden bg-slate-900 relative">
-             {/* Placeholder for map */}
-             <div className="absolute inset-0 flex items-center justify-center bg-slate-800">
-               <span className="text-xs font-semibold uppercase tracking-widest">Map Area</span>
-             </div>
-             <iframe 
-               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.273676839364!2d-79.6441!3d43.5890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b4724b7555555%3A0x1234567890abcdef!2s360%20City%20Centre%20Dr%2C%20Mississauga%2C%20ON%20L5B%200L5!5e0!3m2!1sen!2sca!4v1620000000000!5m2!1sen!2sca" 
-               width="100%" 
-               height="100%" 
-               style={{ border: 0, opacity: 0.7, mixBlendMode: 'luminosity' }} 
-               allowFullScreen 
-               loading="lazy"
-             ></iframe>
-          </div>
         </div>
 
         <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
           <p>© 2026 Rencon Heating & Air Conditioning. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white">Privacy Policy</a>
-            <a href="#" className="hover:text-white">Terms of Service</a>
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-white transition-colors">Sitemap</a>
           </div>
         </div>
       </div>

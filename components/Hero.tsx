@@ -62,7 +62,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Calculator Widget */}
-          <div className="lg:mt-0 animate-in slide-in-from-right duration-700 delay-200">
+          <div id="rebates" className="lg:mt-0 animate-in slide-in-from-right duration-700 delay-200 scroll-mt-32">
             <RebateCalculator />
           </div>
         </div>
