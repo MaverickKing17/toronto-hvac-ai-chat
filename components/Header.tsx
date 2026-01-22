@@ -3,7 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, MapPin } from 'lucide-react';
 import { COMPANY_NAME, PHONE } from '../constants';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onNavigate: (page: string) => void;
+  onScrollTo: (sectionId: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onNavigate, onScrollTo }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -17,13 +22,23 @@ const Header: React.FC = () => {
 
   const navItems = ['Services', 'Rebates', 'About Us', 'Testimonials', 'FAQ'];
 
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    onNavigate('home');
+    
+    // Tiny delay to ensure home view is mounted before scrolling
+    setTimeout(() => {
+      onScrollTo(id);
+    }, 100);
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    onNavigate('home');
+    setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
   };
 
   const getId = (item: string) => {
@@ -40,7 +55,7 @@ const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <a href="#" className="flex items-center gap-2 z-50" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+            <a href="#" className="flex items-center gap-2 z-50" onClick={handleLogoClick}>
               <div className="w-10 h-10 bg-gradient-to-br from-accent to-orange-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">
                 R
               </div>
@@ -55,7 +70,7 @@ const Header: React.FC = () => {
                 <a 
                   key={item} 
                   href={`#${getId(item)}`}
-                  onClick={(e) => handleScrollTo(e, getId(item))}
+                  onClick={(e) => handleNavClick(e, getId(item))}
                   className={`text-sm font-medium hover:text-accent transition-colors ${isScrolled ? 'text-slate-600' : 'text-slate-200'}`}
                 >
                   {item}
@@ -71,7 +86,7 @@ const Header: React.FC = () => {
               </div>
               <a 
                 href="#quote"
-                onClick={(e) => handleScrollTo(e, 'quote')}
+                onClick={(e) => handleNavClick(e, 'quote')}
                 className="bg-accent hover:bg-orange-600 text-white px-6 py-2.5 rounded-full font-semibold text-sm shadow-lg shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
               >
                 Get Free Quote
@@ -96,7 +111,7 @@ const Header: React.FC = () => {
           <a 
             key={item}
             href={`#${getId(item)}`}
-            onClick={(e) => handleScrollTo(e, getId(item))}
+            onClick={(e) => handleNavClick(e, getId(item))}
             className="text-2xl font-display font-bold text-slate-900 hover:text-accent"
           >
             {item}
@@ -111,7 +126,7 @@ const Header: React.FC = () => {
           </div>
           <a 
             href="#quote"
-            onClick={(e) => handleScrollTo(e, 'quote')}
+            onClick={(e) => handleNavClick(e, 'quote')}
             className="mt-4 bg-accent text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl"
           >
             Get Free Quote

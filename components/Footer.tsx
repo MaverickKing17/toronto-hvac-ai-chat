@@ -3,13 +3,24 @@ import React from 'react';
 import { COMPANY_NAME, ADDRESS, PHONE, EMAIL } from '../constants';
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Linkedin, ShieldCheck } from 'lucide-react';
 
-const Footer: React.FC = () => {
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+interface FooterProps {
+  onNavigate: (page: string) => void;
+  onScrollTo: (sectionId: string) => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onNavigate, onScrollTo }) => {
+  const handleInternalLink = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    onNavigate('home');
+    // Allow state update to propagate
+    setTimeout(() => {
+      onScrollTo(id);
+    }, 100);
+  };
+
+  const handlePageLink = (e: React.MouseEvent<HTMLAnchorElement>, page: string) => {
+    e.preventDefault();
+    onNavigate(page);
   };
 
   return (
@@ -43,12 +54,12 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-6">Quick Links</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#services" onClick={(e) => handleScrollTo(e, 'services')} className="hover:text-secondary transition-colors">Services</a></li>
-              <li><a href="#rebates" onClick={(e) => handleScrollTo(e, 'rebates')} className="hover:text-secondary transition-colors">Rebate Calculator</a></li>
-              <li><a href="#about-us" onClick={(e) => handleScrollTo(e, 'about-us')} className="hover:text-secondary transition-colors">About Rencon</a></li>
-              <li><a href="#testimonials" onClick={(e) => handleScrollTo(e, 'testimonials')} className="hover:text-secondary transition-colors">Client Reviews</a></li>
-              <li><a href="#faq" onClick={(e) => handleScrollTo(e, 'faq')} className="hover:text-secondary transition-colors">FAQ</a></li>
-              <li><a href="#quote" onClick={(e) => handleScrollTo(e, 'quote')} className="text-accent hover:text-white font-semibold transition-colors">Get a Quote</a></li>
+              <li><a href="#services" onClick={(e) => handleInternalLink(e, 'services')} className="hover:text-secondary transition-colors">Services</a></li>
+              <li><a href="#rebates" onClick={(e) => handleInternalLink(e, 'rebates')} className="hover:text-secondary transition-colors">Rebate Calculator</a></li>
+              <li><a href="#about-us" onClick={(e) => handleInternalLink(e, 'about-us')} className="hover:text-secondary transition-colors">About Rencon</a></li>
+              <li><a href="#testimonials" onClick={(e) => handleInternalLink(e, 'testimonials')} className="hover:text-secondary transition-colors">Client Reviews</a></li>
+              <li><a href="#faq" onClick={(e) => handleInternalLink(e, 'faq')} className="hover:text-secondary transition-colors">FAQ</a></li>
+              <li><a href="#quote" onClick={(e) => handleInternalLink(e, 'quote')} className="text-accent hover:text-white font-semibold transition-colors">Get a Quote</a></li>
             </ul>
           </div>
 
@@ -92,9 +103,9 @@ const Footer: React.FC = () => {
         <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
           <p>© 2026 Rencon Heating & Air Conditioning. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Sitemap</a>
+            <a href="#" onClick={(e) => handlePageLink(e, 'privacy')} className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" onClick={(e) => handlePageLink(e, 'terms')} className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" onClick={(e) => handlePageLink(e, 'sitemap')} className="hover:text-white transition-colors">Sitemap</a>
           </div>
         </div>
       </div>
