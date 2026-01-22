@@ -13,33 +13,39 @@ const BADGES = [
 
 const CertificationsCarousel: React.FC = () => {
   return (
-    <div className="w-full py-12 bg-slate-50/80 backdrop-blur-sm border-y border-slate-200 overflow-hidden relative">
-      <div className="max-w-7xl mx-auto px-4 mb-8 text-center">
-        <span className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] bg-white border border-slate-200 px-4 py-1.5 rounded-full shadow-sm">
+    <div className="w-full py-16 bg-white border-b border-slate-100 overflow-hidden relative">
+      <div className="max-w-7xl mx-auto px-4 mb-10 text-center">
+        <span className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">
           Trusted & Certified By
         </span>
       </div>
       
       <div className="relative flex overflow-x-hidden group">
-        {/* Gradient Masks for smooth fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
+        {/* Stronger Gradient Masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
 
-        <div className="flex animate-marquee whitespace-nowrap py-4 pl-4">
+        <div className="flex animate-marquee whitespace-nowrap py-2 pl-4">
           {[...BADGES, ...BADGES, ...BADGES, ...BADGES].map((badge, idx) => (
-            <div key={idx} className="mx-4 group/badge cursor-default select-none">
+            <div key={idx} className="mx-5 group/badge cursor-default select-none">
               <div 
-                className="flex items-center gap-3 px-6 py-3.5 rounded-xl bg-white border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_16px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1"
+                className="flex items-center gap-4 px-6 py-4 rounded-xl bg-white shadow-[0_2px_15px_rgba(0,0,0,0.05)] border-y border-r border-slate-50 hover:shadow-[0_8px_25px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1"
+                style={{ borderLeft: `4px solid ${badge.color}` }}
               >
                 <div 
-                  className="p-2 rounded-full bg-slate-50 group-hover/badge:bg-white transition-colors"
+                  className="p-2 rounded-lg bg-slate-50"
                   style={{ color: badge.color }}
                 >
-                  <badge.icon size={20} className="opacity-80 group-hover/badge:opacity-100 transition-opacity" strokeWidth={2.5} />
+                  <badge.icon size={24} strokeWidth={2} />
                 </div>
-                <span className="font-bold text-slate-600 group-hover/badge:text-slate-900 transition-colors text-sm tracking-tight">
-                  {badge.name}
-                </span>
+                <div className="flex flex-col text-left">
+                  <span className="font-bold text-slate-800 text-sm leading-tight">
+                    {badge.name}
+                  </span>
+                  <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+                    Verified
+                  </span>
+                </div>
               </div>
             </div>
           ))}
@@ -47,7 +53,7 @@ const CertificationsCarousel: React.FC = () => {
       </div>
       <style>{`
         .animate-marquee {
-          animation: marquee 40s linear infinite;
+          animation: marquee 50s linear infinite;
         }
         .group:hover .animate-marquee {
           animation-play-state: paused;
