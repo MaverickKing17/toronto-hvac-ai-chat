@@ -1,5 +1,5 @@
 
-import { Wrench, Shield, Thermometer, Wind, Home, Zap } from 'lucide-react';
+import { Wrench, Shield, Thermometer, Wind, Home, Zap, Cpu, Activity, ScanLine } from 'lucide-react';
 import { ServiceItem, Testimonial, TeamMember, FAQItem } from './types';
 
 export const COMPANY_NAME = "Rencon Heating & Air Conditioning";
@@ -10,45 +10,45 @@ export const ADDRESS = "360 City Centre Drive, Mississauga, Ontario, L5B 0L5";
 
 export const SERVICES: ServiceItem[] = [
   {
-    id: 'ac-install',
-    title: 'AC Installation',
-    description: 'Professional installation of Central, Ductless, and Mini Split air conditioning systems.',
+    id: 'smart-cooling',
+    title: 'Neural Cooling Systems',
+    description: 'High-efficiency AC units calibrated via AI load-calculation to perfectly match your home\'s thermal profile.',
     icon: Wind,
     rebateEligible: true
   },
   {
-    id: 'heating-install',
-    title: 'Heating Installation',
-    description: 'Expert setup for Gas Furnaces, Heat Pumps, Boilers, and Radiant systems.',
+    id: 'adaptive-heating',
+    title: 'Adaptive Heating Arrays',
+    description: 'Smart furnaces and heat pumps that learn your schedule and adjust output for maximum comfort and minimum waste.',
     icon: Thermometer,
     rebateEligible: true
   },
   {
-    id: 'maintenance',
-    title: 'Maintenance Plans',
-    description: 'Preventative care to keep your systems running efficiently year-round.',
-    icon: Wrench,
+    id: 'predictive-care',
+    title: 'Predictive Care Protocol',
+    description: 'IoT sensors constantly monitor system health, alerting our central AI to potential failures before they occur.',
+    icon: Activity,
     rebateEligible: false
   },
   {
-    id: 'emergency',
-    title: 'Emergency Repairs',
-    description: '24/7 rapid response for heating and cooling emergencies across the GTA.',
-    icon: Zap,
+    id: 'rapid-response',
+    title: 'Algorithmic Diagnostics',
+    description: 'Computer-vision aided repair diagnostics allow our technicians to identify and solve issues 3x faster.',
+    icon: ScanLine,
     rebateEligible: false
   },
   {
-    id: 'air-quality',
-    title: 'Indoor Air Quality',
-    description: 'HEPA filtration and humidity control for a healthier home environment.',
+    id: 'smart-air',
+    title: 'Autonomous Air Quality',
+    description: 'Active monitoring systems that detect pollutants and automatically adjust filtration and humidity levels.',
     icon: Shield,
     rebateEligible: false
   },
   {
-    id: 'smart-home',
-    title: 'Smart Thermostats',
-    description: 'Integration of Ecobee and Nest systems for maximum energy efficiency.',
-    icon: Home,
+    id: 'iot-integration',
+    title: 'Smart Home Integration',
+    description: 'Seamless syncing with Google Home, Alexa, and HomeKit for voice-controlled climate mastery.',
+    icon: Cpu,
     rebateEligible: true
   }
 ];
