@@ -7,40 +7,40 @@ const Hero: React.FC = () => {
   return (
     <section className="relative min-h-[110vh] flex items-center pt-20 overflow-hidden bg-slate-900">
       
-      {/* Hero Image Layer - clearer and more prominent */}
+      {/* Hero Image Layer - Using clean source image to avoid text duplication/overlap */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://i.ibb.co/N2j148yf/gemini-3-pro-image-preview-a-Replace-the-current-1.png" 
-          alt="Modern HVAC System" 
-          className="w-full h-full object-cover opacity-50"
+          src="https://i.ibb.co/DDn24Gd9/ideogram-v3-quality-b-A-professional-high.png" 
+          alt="Professional HVAC Technician" 
+          className="w-full h-full object-cover opacity-85"
         />
       </div>
 
-      {/* Advanced Gradient Overlay for maximum text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/80 to-transparent z-0"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent z-0"></div>
+      {/* Adjusted Gradient Overlay - Lighter to make image visible while maintaining text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/50 to-transparent z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent z-0"></div>
 
       {/* Mesh subtle effect behind */}
-      <div className="absolute inset-0 bg-mesh opacity-20 mix-blend-soft-light z-0"></div>
+      <div className="absolute inset-0 bg-mesh opacity-10 mix-blend-soft-light z-0"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
           {/* Text Content */}
           <div className="text-center lg:text-left space-y-8 animate-in slide-in-from-left duration-700">
-            <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium shadow-lg">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-white text-sm font-medium shadow-lg">
               <ShieldCheck size={16} className="text-green-400" />
               <span className="tracking-wide">Certified GTA Experts Since 1977</span>
             </div>
             
-            <h1 className="text-5xl lg:text-7xl font-display font-bold text-white leading-tight drop-shadow-sm">
+            <h1 className="text-5xl lg:text-7xl font-display font-bold text-white leading-tight drop-shadow-md">
               Mastering Comfort <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-blue-200">
                 In Every Season
               </span>
             </h1>
             
-            <p className="text-lg text-slate-200 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+            <p className="text-lg text-slate-100 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light drop-shadow-sm">
               Experience the Rencon difference. We provide elite HVAC installation, maintenance, and repairs with up to <span className="text-white font-bold">$10,500</span> in available rebates.
             </p>
 
@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
                 Get Free Quote
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
               </a>
-              <div className="flex items-center gap-2 text-white/90 bg-slate-900/40 px-4 py-2 rounded-full backdrop-blur-sm">
+              <div className="flex items-center gap-2 text-white bg-slate-900/60 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10">
                 <div className="flex">
                   {[1,2,3,4,5].map(i => <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />)}
                 </div>

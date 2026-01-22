@@ -38,7 +38,7 @@ const Team: React.FC = () => {
           <div className="relative">
             <div className="absolute inset-0 bg-secondary rounded-3xl rotate-3 opacity-10"></div>
             <img 
-              src="https://picsum.photos/600/400?grayscale" 
+              src="https://i.ibb.co/N2j148yf/gemini-3-pro-image-preview-a-Replace-the-current-1.png" 
               alt="Rencon Team at work" 
               className="rounded-3xl shadow-2xl relative z-10 w-full object-cover"
             />
