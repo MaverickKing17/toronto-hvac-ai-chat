@@ -78,23 +78,23 @@ export const TEAM: TeamMember[] = [
   {
     id: '1',
     name: 'Michael Rossi',
-    role: 'Lead HVAC Technician',
-    image: 'https://picsum.photos/300/300?random=1',
-    certifications: ['G1 Gas', '313A Refrigeration']
+    role: 'Lead AI Diagnostics',
+    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800',
+    certifications: ['Predictive Maint. L3', 'IoT Systems Arch.']
   },
   {
     id: '2',
-    name: 'David Chen',
-    role: 'Installation Specialist',
-    image: 'https://picsum.photos/300/300?random=2',
-    certifications: ['G2 Gas', 'ODP Certified']
+    name: 'Dr. Sarah Chen',
+    role: 'Smart Grid Specialist',
+    image: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&q=80&w=800',
+    certifications: ['Neural Network Calibration', 'G2 Gas License']
   },
   {
     id: '3',
-    name: 'Elena Silva',
-    role: 'Service Manager',
-    image: 'https://picsum.photos/300/300?random=3',
-    certifications: ['Customer Excellence', 'Safety Lead']
+    name: 'James Silva',
+    role: 'Automation Engineer',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800',
+    certifications: ['Data-Driven HVAC', '313A Refrigeration']
   }
 ];
 
