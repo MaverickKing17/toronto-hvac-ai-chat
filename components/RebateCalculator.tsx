@@ -112,9 +112,12 @@ const RebateCalculator: React.FC = () => {
               </div>
             </div>
 
-            <button className="w-full bg-secondary text-white font-bold py-4 rounded-xl hover:bg-sky-400 transition-all shadow-lg shadow-sky-900/50">
+            <a 
+              href="#quote"
+              className="w-full bg-secondary text-white font-bold py-4 rounded-xl hover:bg-sky-400 transition-all shadow-lg shadow-sky-900/50 block text-center"
+            >
               Book Eligibility Assessment
-            </button>
+            </a>
             <button onClick={() => setCalculated(false)} className="w-full mt-4 text-sm text-slate-400 hover:text-white underline">
               Recalculate
             </button>
