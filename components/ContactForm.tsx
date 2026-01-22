@@ -1,8 +1,36 @@
 
-import React from 'react';
-import { User, Mail, Phone, Wrench, Send, Clock, CheckCircle2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { User, Mail, Phone, Wrench, Send, Clock, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 
 const ContactForm: React.FC = () => {
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('submitting');
+    
+    const formData = new FormData(e.currentTarget);
+    
+    try {
+      const response = await fetch("https://formspree.io/f/xqeparjr", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        setStatus('success');
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
   return (
     <div id="quote" className="relative py-24 lg:py-32 overflow-hidden bg-slate-50">
       
@@ -51,92 +79,131 @@ const ContactForm: React.FC = () => {
 
           {/* Right Side - Floating Form */}
           <div className="lg:col-span-7 lg:pl-12">
-            <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 md:p-10 shadow-2xl border border-white/50 relative overflow-hidden">
+            <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 md:p-10 shadow-2xl border border-white/50 relative overflow-hidden min-h-[500px] flex items-center">
                {/* Decorative Gradient Blob */}
                <div className="absolute -top-20 -right-20 w-64 h-64 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
                
-               <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-6">Request a Free Quote</h3>
-                  
-                  <form 
-                    action="https://formspree.io/f/xqeparjr" 
-                    method="POST" 
-                    className="space-y-5"
-                  >
-                    <div className="grid md:grid-cols-2 gap-5">
-                      <div className="space-y-1.5">
-                        <label htmlFor="name" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Full Name</label>
-                        <div className="relative">
-                          <User className="absolute left-4 top-3.5 text-slate-400" size={18} />
-                          <input 
-                            id="name"
-                            name="name" 
-                            type="text" 
-                            required
-                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all" 
-                            placeholder="Jane Smith" 
-                          />
-                        </div>
+               <div className="relative z-10 w-full">
+                  {status === 'success' ? (
+                    <div className="text-center py-10 animate-in fade-in zoom-in duration-500">
+                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle2 className="text-green-600 w-10 h-10" />
                       </div>
-                      <div className="space-y-1.5">
-                        <label htmlFor="phone" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Phone Number</label>
-                        <div className="relative">
-                          <Phone className="absolute left-4 top-3.5 text-slate-400" size={18} />
-                          <input 
-                            id="phone"
-                            name="phone" 
-                            type="tel" 
-                            required
-                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all" 
-                            placeholder="(555) 123-4567" 
-                          />
-                        </div>
-                      </div>
+                      <h3 className="text-3xl font-display font-bold text-slate-900 mb-4">Request Received!</h3>
+                      <p className="text-slate-600 text-lg mb-8 max-w-md mx-auto">
+                        Thank you for contacting Rencon. One of our specialists will review your request and contact you shortly (usually within 2 hours).
+                      </p>
+                      <button 
+                        onClick={() => setStatus('idle')}
+                        className="text-secondary font-bold hover:text-blue-700 underline"
+                      >
+                        Send another request
+                      </button>
                     </div>
+                  ) : (
+                    <>
+                      <h3 className="text-2xl font-bold text-slate-900 mb-6">Request a Free Quote</h3>
+                      
+                      <form 
+                        onSubmit={handleSubmit}
+                        className="space-y-5"
+                      >
+                        <div className="grid md:grid-cols-2 gap-5">
+                          <div className="space-y-1.5">
+                            <label htmlFor="name" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Full Name</label>
+                            <div className="relative">
+                              <User className="absolute left-4 top-3.5 text-slate-400" size={18} />
+                              <input 
+                                id="name"
+                                name="name" 
+                                type="text" 
+                                required
+                                disabled={status === 'submitting'}
+                                className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all disabled:opacity-50" 
+                                placeholder="Jane Smith" 
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-1.5">
+                            <label htmlFor="phone" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Phone Number</label>
+                            <div className="relative">
+                              <Phone className="absolute left-4 top-3.5 text-slate-400" size={18} />
+                              <input 
+                                id="phone"
+                                name="phone" 
+                                type="tel" 
+                                required
+                                disabled={status === 'submitting'}
+                                className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all disabled:opacity-50" 
+                                placeholder="(555) 123-4567" 
+                              />
+                            </div>
+                          </div>
+                        </div>
 
-                    <div className="space-y-1.5">
-                      <label htmlFor="email" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Email Address</label>
-                      <div className="relative">
-                        <Mail className="absolute left-4 top-3.5 text-slate-400" size={18} />
-                        <input 
-                          id="email"
-                          name="email" 
-                          type="email" 
-                          required
-                          className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all" 
-                          placeholder="jane@example.com" 
-                        />
-                      </div>
-                    </div>
+                        <div className="space-y-1.5">
+                          <label htmlFor="email" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Email Address</label>
+                          <div className="relative">
+                            <Mail className="absolute left-4 top-3.5 text-slate-400" size={18} />
+                            <input 
+                              id="email"
+                              name="email" 
+                              type="email" 
+                              required
+                              disabled={status === 'submitting'}
+                              className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all disabled:opacity-50" 
+                              placeholder="jane@example.com" 
+                            />
+                          </div>
+                        </div>
 
-                    <div className="space-y-1.5">
-                      <label htmlFor="service" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Service Required</label>
-                      <div className="relative">
-                        <Wrench className="absolute left-4 top-3.5 text-slate-400" size={18} />
-                        <select 
-                          id="service"
-                          name="service" 
-                          className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all appearance-none"
+                        <div className="space-y-1.5">
+                          <label htmlFor="service" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Service Required</label>
+                          <div className="relative">
+                            <Wrench className="absolute left-4 top-3.5 text-slate-400" size={18} />
+                            <select 
+                              id="service"
+                              name="service" 
+                              disabled={status === 'submitting'}
+                              className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all appearance-none disabled:opacity-50"
+                            >
+                              <option value="New System Installation">New System Installation</option>
+                              <option value="Repair & Diagnostics">Repair & Diagnostics</option>
+                              <option value="Annual Maintenance">Annual Maintenance</option>
+                              <option value="Rebate Consultation">Rebate Consultation</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <button 
+                          type="submit"
+                          disabled={status === 'submitting'}
+                          className="w-full bg-gradient-to-r from-secondary to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 mt-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
                         >
-                          <option value="New System Installation">New System Installation</option>
-                          <option value="Repair & Diagnostics">Repair & Diagnostics</option>
-                          <option value="Annual Maintenance">Annual Maintenance</option>
-                          <option value="Rebate Consultation">Rebate Consultation</option>
-                        </select>
-                      </div>
-                    </div>
+                          {status === 'submitting' ? (
+                            <>
+                              <Loader2 className="animate-spin" size={20} /> Sending...
+                            </>
+                          ) : (
+                            <>
+                              Submit Request <Send size={18} />
+                            </>
+                          )}
+                        </button>
+                        
+                        {status === 'error' && (
+                          <div className="flex items-center gap-2 justify-center text-red-600 bg-red-50 p-3 rounded-lg text-sm font-medium animate-in fade-in">
+                            <AlertCircle size={16} />
+                            Something went wrong. Please try calling us instead.
+                          </div>
+                        )}
 
-                    <button 
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-secondary to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 mt-2"
-                    >
-                      Submit Request <Send size={18} />
-                    </button>
-                    
-                    <p className="text-xs text-center text-slate-400 mt-4">
-                      By submitting, you agree to our privacy policy. We never spam.
-                    </p>
-                  </form>
+                        <p className="text-xs text-center text-slate-400 mt-4">
+                          By submitting, you agree to our privacy policy. We never spam.
+                        </p>
+                      </form>
+                    </>
+                  )}
                </div>
             </div>
           </div>
