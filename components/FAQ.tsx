@@ -18,32 +18,44 @@ const FAQ: React.FC = () => {
         </div>
 
         <div className="space-y-4">
-          {FAQS.map((faq, idx) => (
-            <div 
-              key={idx} 
-              className={`bg-white rounded-2xl border transition-all duration-300 ${openIndex === idx ? 'border-secondary shadow-lg' : 'border-slate-200 hover:border-slate-300'}`}
-            >
-              <button
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
-              >
-                <span className={`font-bold text-lg ${openIndex === idx ? 'text-secondary' : 'text-slate-900'}`}>
-                  {faq.question}
-                </span>
-                <div className={`p-2 rounded-full transition-colors ${openIndex === idx ? 'bg-secondary text-white' : 'bg-slate-100 text-slate-500'}`}>
-                  {openIndex === idx ? <Minus size={20} /> : <Plus size={20} />}
-                </div>
-              </button>
-              
+          {FAQS.map((faq, idx) => {
+            const isOpen = openIndex === idx;
+            const buttonId = `faq-button-${idx}`;
+            const contentId = `faq-content-${idx}`;
+
+            return (
               <div 
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === idx ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                key={idx} 
+                className={`bg-white rounded-2xl border transition-all duration-300 ${isOpen ? 'border-secondary shadow-lg' : 'border-slate-200 hover:border-slate-300'}`}
               >
-                <div className="p-6 pt-0 text-slate-600 leading-relaxed border-t border-transparent">
-                  {faq.answer}
+                <button
+                  id={buttonId}
+                  aria-controls={contentId}
+                  aria-expanded={isOpen}
+                  onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  className="w-full flex items-center justify-between p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-inset rounded-2xl group"
+                >
+                  <span className={`font-bold text-lg transition-colors ${isOpen ? 'text-secondary' : 'text-slate-900 group-hover:text-secondary'}`}>
+                    {faq.question}
+                  </span>
+                  <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-secondary text-white' : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200'}`}>
+                    {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                  </div>
+                </button>
+                
+                <div 
+                  id={contentId}
+                  role="region"
+                  aria-labelledby={buttonId}
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                >
+                  <div className="p-6 pt-0 text-slate-600 leading-relaxed border-t border-transparent">
+                    {faq.answer}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
