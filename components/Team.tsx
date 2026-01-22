@@ -1,125 +1,128 @@
 
 import React from 'react';
-import { TEAM } from '../constants';
-import { Cpu, Wifi, Shield, Zap, Search, ChevronRight } from 'lucide-react';
+import { Cpu, Globe, Activity, Shield } from 'lucide-react';
 
 const Team: React.FC = () => {
   return (
-    <section id="about-us" className="py-24 bg-slate-950 relative overflow-hidden">
-      {/* Cyberpunk Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(14,165,233,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 text-accent font-mono text-xs tracking-widest uppercase mb-4">
-              <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-              Live Operations
-            </div>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-white leading-tight">
-              Elite Technical <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-blue-400">
-                Squadron
-              </span>
-            </h2>
-          </div>
-          <div className="hidden md:flex gap-2">
-             <div className="px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 text-xs font-mono flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                SYSTEMS OPTIMIZED
-             </div>
-             <div className="px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 text-xs font-mono flex items-center gap-2">
-                <Wifi size={12} />
-                FLEET CONNECTED
-             </div>
-          </div>
+    <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
+        {/* Background Gradients */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/20 rounded-full blur-[120px]"></div>
+            <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-purple-600/20 rounded-full blur-[120px]"></div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {TEAM.map((member, idx) => (
-            <div 
-              key={member.id} 
-              className="group relative h-[420px] rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 hover:border-secondary/50 transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(14,165,233,0.3)]"
-            >
-              {/* Image Layer */}
-              <img 
-                src={member.image} 
-                alt={member.name} 
-                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 grayscale group-hover:grayscale-0"
-              />
-              
-              {/* Scanning Effect Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-              
-              {/* Scanline */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-secondary/50 shadow-[0_0_15px_rgba(14,165,233,1)] translate-y-[-100%] group-hover:animate-[scan_2s_ease-in-out_infinite]"></div>
-
-              {/* Content Content */}
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="px-2 py-1 bg-secondary/20 border border-secondary/30 text-secondary text-[10px] font-bold uppercase tracking-wider rounded">
-                      Level 3 Technician
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Header */}
+            <div className="mb-16 text-center max-w-3xl mx-auto">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-xs font-mono mb-6">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    <Cpu className="text-slate-400 group-hover:text-accent transition-colors" size={18} />
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-secondary transition-colors">
-                    {member.name}
-                  </h3>
-                  <p className="text-slate-400 text-sm font-medium mb-4 flex items-center gap-2">
-                    {member.role}
-                  </p>
-
-                  <div className="space-y-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 border-t border-slate-800 pt-4 mt-4">
-                    {member.certifications.map((cert, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-slate-300">
-                        <Shield size={12} className="text-accent" />
-                        {cert}
-                      </div>
-                    ))}
-                    <div className="pt-2 flex items-center justify-between text-xs font-mono text-secondary">
-                      <span>EFFICIENCY RATING</span>
-                      <span>99.{8 - idx}%</span>
-                    </div>
-                    {/* Simulated Progress Bar */}
-                    <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
-                      <div className="h-full bg-secondary w-[90%]"></div>
-                    </div>
-                  </div>
+                    SYSTEM STATUS: ONLINE
                 </div>
-              </div>
+                <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight">
+                    The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Rencon Operating System</span>
+                </h2>
+                <p className="text-lg text-slate-400 leading-relaxed">
+                    We've replaced the traditional HVAC service model with a vertically integrated digital infrastructure. 
+                </p>
             </div>
-          ))}
+
+            {/* Bento Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 min-h-[600px]">
+                
+                {/* 1. Main Feature - AI Core (Large, Spans 2x2) */}
+                <div className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-[2rem] bg-slate-900 border border-slate-800 shadow-2xl">
+                    <div className="absolute inset-0">
+                        {/* Abstract Tech Image - Circuit/Chip/Data */}
+                        <img 
+                            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1600" 
+                            alt="AI Core Processing" 
+                            className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                    </div>
+                    
+                    <div className="absolute bottom-0 left-0 p-8 md:p-10 w-full z-20">
+                        <div className="w-14 h-14 bg-blue-600/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6 text-blue-400 border border-blue-500/30 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                            <Cpu size={28} />
+                        </div>
+                        <h3 className="text-3xl font-bold mb-3 text-white">Central Intelligence</h3>
+                        <p className="text-slate-300 leading-relaxed max-w-md text-sm md:text-base">
+                            Our proprietary predictive model processes 5,000+ data points daily, anticipating system failures days before they occur.
+                        </p>
+                    </div>
+                </div>
+
+                {/* 2. Secondary Feature - Global Fleet (Wide, Spans 2 cols) */}
+                <div className="md:col-span-2 relative group overflow-hidden rounded-[2rem] bg-slate-900 border border-slate-800">
+                    <div className="absolute inset-0">
+                         {/* Abstract Map/Network Image */}
+                         <img 
+                            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1600" 
+                            alt="Global Network Map" 
+                            className="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
+                    </div>
+                    <div className="absolute inset-0 p-8 flex flex-col justify-center items-start z-10">
+                         <div className="w-12 h-12 bg-indigo-600/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-4 text-indigo-400 border border-indigo-500/30">
+                            <Globe size={24} />
+                        </div>
+                        <h3 className="text-2xl font-bold mb-2 text-white">Autonomous Dispatch</h3>
+                        <p className="text-slate-300 text-sm max-w-sm">
+                            AI-routed logistics ensure the nearest expert is deployed instantly, cutting response times to <span className="text-white font-bold">&lt; 45 mins</span>.
+                        </p>
+                    </div>
+                </div>
+
+                {/* 3. Stat Card (Small Square) */}
+                <div className="relative group overflow-hidden rounded-[2rem] bg-slate-900 border border-slate-800 p-8 flex flex-col justify-between">
+                     <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
+                        <img 
+                           src="https://images.unsplash.com/photo-1558494949-efc535b5c47c?auto=format&fit=crop&q=80&w=800" 
+                           alt="Server Status"
+                           className="w-full h-full object-cover" 
+                        />
+                        <div className="absolute inset-0 bg-slate-950/50"></div>
+                     </div>
+                     
+                     <div className="relative z-10">
+                        <div className="flex justify-between items-start mb-4">
+                            <div className="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                                <Activity className="text-emerald-400" size={20} />
+                            </div>
+                        </div>
+                        <div className="text-4xl font-mono font-bold text-white mb-1 tracking-tighter">99.9%</div>
+                        <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">System Uptime</div>
+                     </div>
+                </div>
+
+                {/* 4. Security Feature (Small Square) */}
+                <div className="relative group overflow-hidden rounded-[2rem] bg-slate-900 border border-slate-800 p-8 flex flex-col justify-between">
+                     <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
+                         <img 
+                           src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=800" 
+                           alt="Code Security"
+                           className="w-full h-full object-cover" 
+                        />
+                        <div className="absolute inset-0 bg-slate-900/80"></div>
+                     </div>
+                     
+                     <div className="relative z-10">
+                        <div className="flex justify-between items-start mb-4">
+                            <div className="p-2 bg-orange-500/10 rounded-lg border border-orange-500/20">
+                                <Shield className="text-orange-400" size={20} />
+                            </div>
+                        </div>
+                        <div className="text-xl font-bold text-white mb-1">IoT Shield</div>
+                        <div className="text-xs text-slate-400">AES-256 Encryption</div>
+                     </div>
+                </div>
+
+            </div>
         </div>
-        
-        {/* Bottom Status Bar */}
-        <div className="mt-12 py-6 border-t border-slate-900 flex flex-wrap gap-8 justify-center md:justify-start text-slate-500 font-mono text-xs">
-           <div className="flex items-center gap-2">
-             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-             <span>AI MONITORING: ACTIVE</span>
-           </div>
-           <div className="flex items-center gap-2">
-             <Search size={14} />
-             <span>DIAGNOSTICS: RUNNING</span>
-           </div>
-           <div className="flex items-center gap-2">
-             <Zap size={14} />
-             <span>POWER GRID: STABLE</span>
-           </div>
-        </div>
-      </div>
-      
-      <style>{`
-        @keyframes scan {
-          0% { transform: translateY(-100%); opacity: 0; }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { transform: translateY(420px); opacity: 0; }
-        }
-      `}</style>
     </section>
   );
 };
