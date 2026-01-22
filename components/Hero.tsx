@@ -12,11 +12,11 @@ const Hero: React.FC = () => {
       {/* Dark Overlay for text contrast */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-900/10 to-slate-50/100"></div>
 
-      {/* Hero Image Layer (Pressure Gauges Concept) */}
+      {/* Hero Image Layer */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://picsum.photos/1920/1080?grayscale&blur=2" 
-          alt="HVAC Gauges" 
+          src="https://i.ibb.co/N2j148yf/gemini-3-pro-image-preview-a-Replace-the-current-1.png" 
+          alt="Modern HVAC System" 
           className="w-full h-full object-cover mix-blend-overlay opacity-20"
         />
       </div>
