@@ -20,6 +20,14 @@ const RebateCalculator: React.FC = () => {
     }
   };
 
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-slate-900 text-white shadow-2xl border border-slate-700">
       {/* Abstract Background Shapes */}
@@ -114,6 +122,7 @@ const RebateCalculator: React.FC = () => {
 
             <a 
               href="#quote"
+              onClick={(e) => handleScrollTo(e, 'quote')}
               className="w-full bg-secondary text-white font-bold py-4 rounded-xl hover:bg-sky-400 transition-all shadow-lg shadow-sky-900/50 block text-center"
             >
               Book Eligibility Assessment

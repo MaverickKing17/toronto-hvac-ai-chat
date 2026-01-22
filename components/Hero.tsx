@@ -4,6 +4,14 @@ import { ArrowRight, Star, ShieldCheck } from 'lucide-react';
 import RebateCalculator from './RebateCalculator';
 
 const Hero: React.FC = () => {
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-[110vh] flex items-center pt-20 overflow-hidden bg-slate-900">
       
@@ -47,6 +55,7 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-2">
               <a 
                 href="#quote" 
+                onClick={(e) => handleScrollTo(e, 'quote')}
                 className="w-full sm:w-auto px-8 py-4 bg-accent hover:bg-orange-600 text-white rounded-full font-bold shadow-lg shadow-orange-500/25 transition-all flex items-center justify-center gap-2 group hover:scale-105 active:scale-95"
               >
                 Get Free Quote

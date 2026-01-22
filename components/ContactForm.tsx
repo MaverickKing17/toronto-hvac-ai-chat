@@ -58,46 +58,78 @@ const ContactForm: React.FC = () => {
                <div className="relative z-10">
                   <h3 className="text-2xl font-bold text-slate-900 mb-6">Request a Free Quote</h3>
                   
-                  <form className="space-y-5">
+                  <form 
+                    action="https://formspree.io/f/xqeparjr" 
+                    method="POST" 
+                    className="space-y-5"
+                  >
                     <div className="grid md:grid-cols-2 gap-5">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Full Name</label>
+                        <label htmlFor="name" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Full Name</label>
                         <div className="relative">
                           <User className="absolute left-4 top-3.5 text-slate-400" size={18} />
-                          <input type="text" className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all" placeholder="Jane Smith" />
+                          <input 
+                            id="name"
+                            name="name" 
+                            type="text" 
+                            required
+                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all" 
+                            placeholder="Jane Smith" 
+                          />
                         </div>
                       </div>
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Phone Number</label>
+                        <label htmlFor="phone" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Phone Number</label>
                         <div className="relative">
                           <Phone className="absolute left-4 top-3.5 text-slate-400" size={18} />
-                          <input type="tel" className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all" placeholder="(555) 123-4567" />
+                          <input 
+                            id="phone"
+                            name="phone" 
+                            type="tel" 
+                            required
+                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all" 
+                            placeholder="(555) 123-4567" 
+                          />
                         </div>
                       </div>
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Email Address</label>
+                      <label htmlFor="email" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Email Address</label>
                       <div className="relative">
                         <Mail className="absolute left-4 top-3.5 text-slate-400" size={18} />
-                        <input type="email" className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all" placeholder="jane@example.com" />
+                        <input 
+                          id="email"
+                          name="email" 
+                          type="email" 
+                          required
+                          className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all" 
+                          placeholder="jane@example.com" 
+                        />
                       </div>
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Service Required</label>
+                      <label htmlFor="service" className="text-xs font-bold text-slate-500 uppercase tracking-wide ml-1">Service Required</label>
                       <div className="relative">
                         <Wrench className="absolute left-4 top-3.5 text-slate-400" size={18} />
-                        <select className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all appearance-none">
-                          <option>New System Installation</option>
-                          <option>Repair & Diagnostics</option>
-                          <option>Annual Maintenance</option>
-                          <option>Rebate Consultation</option>
+                        <select 
+                          id="service"
+                          name="service" 
+                          className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all appearance-none"
+                        >
+                          <option value="New System Installation">New System Installation</option>
+                          <option value="Repair & Diagnostics">Repair & Diagnostics</option>
+                          <option value="Annual Maintenance">Annual Maintenance</option>
+                          <option value="Rebate Consultation">Rebate Consultation</option>
                         </select>
                       </div>
                     </div>
 
-                    <button className="w-full bg-gradient-to-r from-secondary to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 mt-2">
+                    <button 
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-secondary to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 mt-2"
+                    >
                       Submit Request <Send size={18} />
                     </button>
                     
