@@ -1,0 +1,122 @@
+
+import { Wrench, Shield, Thermometer, Wind, Home, Zap } from 'lucide-react';
+import { ServiceItem, Testimonial, TeamMember, FAQItem } from './types';
+
+export const COMPANY_NAME = "Rencon Heating & Air Conditioning";
+export const TAGLINE = "Dedicated GTA HVAC Since 1977";
+export const PHONE = "905-566-5780";
+export const EMAIL = "info@rencon.one";
+export const ADDRESS = "360 City Centre Drive, Mississauga, Ontario, L5B 0L5";
+
+export const SERVICES: ServiceItem[] = [
+  {
+    id: 'ac-install',
+    title: 'AC Installation',
+    description: 'Professional installation of Central, Ductless, and Mini Split air conditioning systems.',
+    icon: Wind,
+    rebateEligible: true
+  },
+  {
+    id: 'heating-install',
+    title: 'Heating Installation',
+    description: 'Expert setup for Gas Furnaces, Heat Pumps, Boilers, and Radiant systems.',
+    icon: Thermometer,
+    rebateEligible: true
+  },
+  {
+    id: 'maintenance',
+    title: 'Maintenance Plans',
+    description: 'Preventative care to keep your systems running efficiently year-round.',
+    icon: Wrench,
+    rebateEligible: false
+  },
+  {
+    id: 'emergency',
+    title: 'Emergency Repairs',
+    description: '24/7 rapid response for heating and cooling emergencies across the GTA.',
+    icon: Zap,
+    rebateEligible: false
+  },
+  {
+    id: 'air-quality',
+    title: 'Indoor Air Quality',
+    description: 'HEPA filtration and humidity control for a healthier home environment.',
+    icon: Shield,
+    rebateEligible: false
+  },
+  {
+    id: 'smart-home',
+    title: 'Smart Thermostats',
+    description: 'Integration of Ecobee and Nest systems for maximum energy efficiency.',
+    icon: Home,
+    rebateEligible: true
+  }
+];
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: '1',
+    name: 'Bill Dunn',
+    role: 'BHD Networks',
+    quote: 'Amazing work, good job! Job was quoted and completed as promised. Keep up the good work. A++++'
+  },
+  {
+    id: '2',
+    name: 'Sal Spataro',
+    role: 'Salto Restaurant Bar & Cafe',
+    quote: 'High standard and very efficient. From the day Rencon came in, to the end result, they were very professional. I highly recommend.'
+  },
+  {
+    id: '3',
+    name: 'Sarah Jenkins',
+    role: 'Mississauga Resident',
+    quote: 'The rebate calculator was spot on. We saved over $4,000 on our new Heat Pump installation. The team was clean, fast, and polite.'
+  }
+];
+
+export const TEAM: TeamMember[] = [
+  {
+    id: '1',
+    name: 'Michael Rossi',
+    role: 'Lead HVAC Technician',
+    image: 'https://picsum.photos/300/300?random=1',
+    certifications: ['G1 Gas', '313A Refrigeration']
+  },
+  {
+    id: '2',
+    name: 'David Chen',
+    role: 'Installation Specialist',
+    image: 'https://picsum.photos/300/300?random=2',
+    certifications: ['G2 Gas', 'ODP Certified']
+  },
+  {
+    id: '3',
+    name: 'Elena Silva',
+    role: 'Service Manager',
+    image: 'https://picsum.photos/300/300?random=3',
+    certifications: ['Customer Excellence', 'Safety Lead']
+  }
+];
+
+export const FAQS: FAQItem[] = [
+  {
+    question: "How do I qualify for the $10,500 rebate?",
+    answer: "To qualify for the Home Efficiency Rebate Plus (HER+) program, you typically need to be an Enbridge Gas customer and install an eligible heat pump system. We handle the initial assessment booking and guide you through the audit process to ensure you maximize your return."
+  },
+  {
+    question: "Do you offer financing options?",
+    answer: "Yes, we offer flexible financing plans including 0% interest for 12 months on select high-efficiency systems. We also work with the Canada Greener Homes Loan which offers interest-free loans up to $40,000."
+  },
+  {
+    question: "Are your technicians certified?",
+    answer: "Absolutely. All our technicians hold valid G1/G2 Gas Technician licenses and 313A/313D Refrigeration certifications. We are TSSA certified, HRAI members, and fully insured."
+  },
+  {
+    question: "What areas do you service?",
+    answer: "We service the entire Greater Toronto Area, including Mississauga, Brampton, Oakville, Burlington, Milton, Etobicoke, North York, and Scarborough."
+  },
+  {
+    question: "How often should I change my furnace filter?",
+    answer: "For most homes, we recommend checking your filter every 30 days and replacing it every 1-3 months. If you have pets or allergies, you may need to change it more frequently to maintain optimal air quality."
+  }
+];
